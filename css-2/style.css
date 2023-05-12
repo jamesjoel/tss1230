@@ -1,0 +1,31 @@
+
+body{
+    background-color: #405060;
+}
+.box{
+    height: 300px;
+    width: 300px;
+    background-color: #FFF;
+    /* Text properties */
+    /* text-align: justify; */
+    /*            left, right, center, justify   */
+
+    /* text-decoration: line-through; */
+    /*              underline, overline,   */
+
+    /* text-transform: capitalize; */
+    /*                uppercase, lowercase   */
+
+    /* text-indent: 50px; */
+
+    /* line-height: 30px; */
+    /* word-spacing: 10px; */
+    /* letter-spacing: 5px; */
+    /* word-wrap: break-word; */
+
+
+    /* font-size: 14px; */
+    font-family: Helvetica;
+    /* font-weight: bold; */
+    font-style: italic;
+}
