@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" />
+        <link type="text/css" rel="stylesheet" href="/css/style.css" />
+        <script src="/js/bootstrap.bundle.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">My Website</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">Product</a>
+                      </li>
+                  
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 my-4">
+                  <h1>Home Page</h1>
+                  <table class="table table-dark">
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>Lat</th>
+                        <th>Lng</th>
+                        <th>Company</th>
+                    </tr>
+                  
+                  <% data.forEach((x, n)=>{ %>
+                    <tr>
+                        <td><%= n+1 %></td>
+                        <td><%= x.name %></td>
+                        <td><%= x.email %></td>
+                        <td><%= x.address.city %></td>
+                        <td><%= x.address.geo.lat %></td>
+                        <td><%= x.address.geo.lng %></td>
+                        <td><%= x.company.name %></td>
+                    </tr>  
+                  <% }) %>
+                </table>
+              </div>
+            </div>
+          </div>
+    </body>
+</html>
