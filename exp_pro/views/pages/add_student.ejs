@@ -1,0 +1,49 @@
+<%- include("../includes/header") %>
+
+
+<div class="container" style="min-height: 700px;">
+    <h1>Add New Student</h1>
+    
+    <div class="row">
+        <form action="/save" method="post">
+        <div class="col-md-6 offset-md-3">
+            <div class="mb-3">
+                <label class="form-lable">Full Name</label>
+                <input type="text" name="fullname" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-lable">Email</label>
+                <input type="text" name="email" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-lable">Address</label>
+                <textarea class="form-control" name="add" ></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-lable">City</label>
+                <select name="city" class="form-control" >
+                    <option>Select</option>
+                    <option>Indore</option>
+                    <option>Mumbai</option>
+                    <option>Pune</option>
+                    <option>Delhi</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-lable">Gender</label>
+                Male<input type="radio" value="male"  name="gender"/>
+                Female<input type="radio" value="female"  name="gender"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-lable">Contact</label>
+                <input type="text" name="contact" class="form-control" />
+            </div>
+            <br />
+            <input type="submit"  value="Add" class="btn btn-primary" />
+        </div>
+        </form>
+    </div>
+    
+</div>
+<%- include("../includes/sale") %>
+<%- include("../includes/footer") %>
