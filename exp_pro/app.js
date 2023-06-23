@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const Student = require("./models/Student");
+
 
 app.use(express.static(__dirname+"/assets"));
 
@@ -27,8 +29,10 @@ app.get("/addstudent", (req, res)=>{
 })
 
 
-app.post("/save", (req, res)=>{
-    console.log(req.body);
+app.post("/save", async (req, res)=>{
+    // console.log(req.body);
+    await Student.create(req.body);
+    res.redirect("/about");
 })
 
 
