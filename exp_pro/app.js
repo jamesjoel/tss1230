@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const Student = require("./models/Student");
+const Info = require("./models/Teacher")
 
 
 app.use(express.static(__dirname+"/assets"));
@@ -28,11 +29,37 @@ app.get("/addstudent", (req, res)=>{
     res.render("pages/add_student");
 })
 
+app.post("/form", async (req, res)=>{
+    console.log(req.body);
+    await Info.create(req.body);
+    res.redirect("/teacherlist");
+})
 
 app.post("/save", async (req, res)=>{
     // console.log(req.body);
     await Student.create(req.body);
-    res.redirect("/about");
+    res.redirect("/liststudent");
+})
+
+
+app.get("/teacherlist", async (req, res)=>{
+
+    let result = await Info.find();
+
+    let pagedata = {result};
+
+    res.render("pages/teacherlist", pagedata);
+})
+
+app.get("/liststudent", async (req, res)=>{
+    let result = await Student.find();
+    let pagedata = {result};
+    res.render("pages/liststudent", pagedata);
+})
+
+
+app.get("/teacher", (req, res)=>{
+    res.render("pages/teacher");
 })
 
 
