@@ -63,6 +63,16 @@ app.get("/teacher", (req, res)=>{
 })
 
 
+
+
+app.get("/delete-student/:a", async (req, res)=>{
+    let x = req.params.a;
+    await Student.deleteMany({ _id : x });   
+    res.redirect("/liststudent")
+})
+
+
+
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
     console.log("Project Running With Port ", port);
