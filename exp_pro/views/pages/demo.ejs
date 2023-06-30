@@ -1,0 +1,42 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Demo Page</h1>
+        <table border="1">
+            <tr>
+                <th>S.No.</th>
+                <th>Color Name</th>
+            </tr>
+        <% 
+            let color = [
+                            {
+                                name : "rohit"
+                            }, 
+                            {
+                                name : "amar"
+                            }, 
+                            {
+                                name : "vijay"
+                            }, 
+                            {
+                                name : "gaurav"
+                            }
+                        ];
+            
+            color.forEach((value, index)=>{ %>
+
+                <tr>
+                    <td><%= index+1 %></td>
+                    <td><%= value.name %></td>
+                </tr>
+
+            <% 
+            })
+            %>
+        
+        </table>
+
+    </body>
+</html>

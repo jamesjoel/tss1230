@@ -19,14 +19,14 @@
                 <label class="form-lable">Address</label>
                 <textarea class="form-control" name="address" ></textarea>
             </div>
+            
             <div class="mb-3">
                 <label class="form-lable">City</label>
                 <select name="city" class="form-control" >
                     <option>Select</option>
-                    <option>Indore</option>
-                    <option>Mumbai</option>
-                    <option>Pune</option>
-                    <option>Delhi</option>
+                    <% result.forEach(x=>{ %>
+                        <option><%= x.name %></option>
+                    <% }) %>
                 </select>
             </div>
             <div class="mb-3">

@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const Student = require("./models/Student");
 const Info = require("./models/Teacher")
+const City = require("./models/City");
 
 
 app.use(express.static(__dirname+"/assets"));
@@ -25,8 +26,10 @@ app.get("/contact", (req, res)=>{
     res.render("pages/contact");
 })
 
-app.get("/addstudent", (req, res)=>{
-    res.render("pages/add_student");
+app.get("/addstudent", async (req, res)=>{
+    let result = await City.find();
+    let pagedata = {result};
+    res.render("pages/add_student", pagedata);
 })
 
 app.post("/form", async (req, res)=>{
@@ -71,12 +74,19 @@ app.get("/delete-student/:a", async (req, res)=>{
     res.redirect("/liststudent")
 })
 
+app.get("/demo", (req, res)=>{
+    res.render("pages/demo");
+})
+
 
 
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
     console.log("Project Running With Port ", port);
 })
+
+
+
 
 /*
     flipkart.com            ---- domain
