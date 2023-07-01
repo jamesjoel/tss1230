@@ -5,24 +5,31 @@
     <h1>List of All Student</h1>
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-info table-bordered">
-                <tr>
-                    <th>S.No.</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Contact</th>
-                    <th>Delete</th>
-                </tr>
-                <% result.forEach((x, n)=>{ %>
+            <% if(result.length == 0){ %>
+                <div class="alert alert-warning">No Data Found</div>
+            <% }else{ %>
+                <table class="table table-info table-bordered">
                     <tr>
-                        <td><%= n+1 %></td>
-                        <td><%= x.name %></td>
-                        <td><%= x.email %></td>
-                        <td><%= x.contact %></td>
-                        <td><a href="/delete-student/<%= x._id %>" class="btn btn-danger btn-sm">Delete</a></td>
+                        <th>S.No.</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
-                <% })  %>
-            </table>
+                    <% result.forEach((x, n)=>{ %>
+                        <tr>
+                            <td><%= n+1 %></td>
+                            <td><%= x.name %></td>
+                            <td><%= x.email %></td>
+                            <td><%= x.contact %></td>
+                            <td><a href="/editstudent/<%= x._id %>" class="btn btn-primary btn-sm">Edit</a></td>
+                            <td><a href="/delete-student/<%= x._id %>" class="btn btn-danger btn-sm">Delete</a></td>
+                        </tr>
+                    <% })  %>
+                </table>
+
+            <% } %>
         </div>
     </div>
     

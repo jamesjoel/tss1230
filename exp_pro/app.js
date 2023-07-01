@@ -80,6 +80,21 @@ app.get("/demo", (req, res)=>{
 
 
 
+app.get("/editstudent/:x", async (req, res)=>{
+    let a = req.params.x;
+    let stu = await Student.find({_id : a});
+    
+    let result = await City.find();
+    let pagedata = {result, data : stu[0]};
+    res.render("pages/edit_student", pagedata);
+})
+
+app.post("/updatestu/:x", async (req, res)=>{
+    let a = req.params.x;
+    await Student.updateMany({ _id : a}, req.body);
+    res.redirect("/liststudent");
+})
+
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
     console.log("Project Running With Port ", port);
