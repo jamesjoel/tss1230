@@ -1,0 +1,10 @@
+.bg-purple{
+    background-color: #D01CEC;
+}
+#menu .nav .nav-item .nav-link{
+    font-weight: bold;
+    color: #fff;
+}
+#menu .nav .nav-item .nav-link:hover{
+    background-color: #000;
+}
