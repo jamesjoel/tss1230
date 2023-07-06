@@ -16,7 +16,8 @@ app.get("/", (req, res)=>{
     res.render("pages/home");
 })
 app.get("/about", (req, res)=>{
-    res.render("pages/about");
+    // res.render("pages/about");
+    res.redirect("/contact");
 })
 app.get("/about/info", (req, res)=>{
     res.render("pages/info");

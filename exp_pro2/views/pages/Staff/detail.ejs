@@ -1,0 +1,31 @@
+<%- include("../../includes/header") %>
+<div class="container my-5" style="min-height: 700px;">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h3>Staff Detail</h3>
+            <table class="table table-secondary table-bordered">
+                <tr>
+                    <td>Full Name</td>
+                    <td><%= result.name %></td>
+                </tr>
+                <tr>
+                    <td>Contact</td>
+                    <td><%= result.contact %></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><%= result.email %></td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td><%= result.city %></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td><%= result.gender %></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<%- include("../../includes/footer") %>
