@@ -1,14 +1,13 @@
 
 import ReactDOM from 'react-dom/client';
-import Abc from './box'
-import Xyz from './box2'
+import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('box'));
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <>
-    <Xyz />
-    <Abc />
+    <App />
   </>
 );
 
