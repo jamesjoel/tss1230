@@ -1,0 +1,45 @@
+{
+    "student" : [
+        {
+            "id" : 1,
+            "name" : "rohit",
+            "age" : 25
+        },
+        {
+            "id" : 2,
+            "name" : "amar",
+            "age" : 23
+        },
+        {
+            "id" : 3,
+            "name" : "vijay",
+            "age" : 20
+        }
+    ],
+    "hotels" : [
+        {
+            "_id" : 1,
+            "title" : "Hotel Sayaji",
+            "image" : "assets/images/room1.jpg",
+            "detail" : "If you are going to use a passage of Lorem Ipsum, you need to be sure there"
+         },
+         {
+            "_id" : 2,
+            "title" : "President Park",
+            "image" : "assets/images/banner1.jpg",
+            "detail" : "If you are going to use a passage of Lorem Ipsum, you need to be sure there"
+         },
+         {
+            "_id" : 3,
+            "title" : "Shree Maya",
+            "image" : "assets/images/banner2.jpg",
+            "detail" : "If you are going to use a passage of Lorem Ipsum, you need to be sure there"
+         },
+         {
+            "_id" : 4,
+            "title" : "Redisson",
+            "image" : "assets/images/banner3.jpg",
+            "detail" : "If you are going to use a passage of Lorem Ipsum, you need to be sure there"
+         }
+    ]
+}
