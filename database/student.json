@@ -20,25 +20,25 @@
         {
             "_id" : 1,
             "title" : "Hotel Sayaji",
-            "image" : "assets/images/room1.jpg",
+            "image" : "/assets/images/room1.jpg",
             "detail" : "If you are going to use a passage of Lorem Ipsum, you need to be sure there"
          },
          {
             "_id" : 2,
             "title" : "President Park",
-            "image" : "assets/images/banner1.jpg",
+            "image" : "/assets/images/banner1.jpg",
             "detail" : "If you are going to use a passage of Lorem Ipsum, you need to be sure there"
          },
          {
             "_id" : 3,
             "title" : "Shree Maya",
-            "image" : "assets/images/banner2.jpg",
+            "image" : "/assets/images/banner2.jpg",
             "detail" : "If you are going to use a passage of Lorem Ipsum, you need to be sure there"
          },
          {
             "_id" : 4,
             "title" : "Redisson",
-            "image" : "assets/images/banner3.jpg",
+            "image" : "/assets/images/banner3.jpg",
             "detail" : "If you are going to use a passage of Lorem Ipsum, you need to be sure there"
          }
     ]

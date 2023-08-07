@@ -3,12 +3,13 @@ import Banner from '../../shared/Banner/Banner'
 import Hotels from '../../shared/Hotels/Hotels'
 import Gallery from '../../shared/Gallery/Gallery'
 import axios from 'axios'
+import { API } from '../../../constants/API'
 
 const Home = () => {
 
    let [data, setData] = useState([]);
    useEffect(()=>{
-      axios.get("http://localhost:8080/hotels").then((response)=>{
+      axios.get(`${API}/hotels`).then((response)=>{
          setData(response.data);
       })
    }, [])

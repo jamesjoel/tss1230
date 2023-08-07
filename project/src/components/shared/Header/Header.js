@@ -1,7 +1,17 @@
+import { useEffect, useState } from 'react'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const Header = () => {
+
+   let [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+   useEffect(()=>{
+      if(localStorage.getItem("access-token")){
+         setIsUserLoggedIn(true)
+      }
+   }, [])
+
   return (
     <>
     <header>
@@ -30,12 +40,28 @@ const Header = () => {
                               <li className="nav-item">
                                  <NavLink className="nav-link" to="/about">About</NavLink>
                               </li>
-                              <li className="nav-item">
-                                 <NavLink className="nav-link" to="/login">Login</NavLink>
-                              </li>
-                              <li className="nav-item">
-                                 <NavLink className="nav-link" to="/signup">Signup</NavLink>
-                              </li>
+                              {
+                                 isUserLoggedIn ? 
+                                 <>
+                                    <li className="nav-item">
+                                    <NavLink className="nav-link" to="/myaccount">My Account</NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                       <NavLink className="nav-link" to="/logout">Logout</NavLink>
+                                    </li>
+                                 </>
+                                  : 
+                                  <>
+                                    <li className="nav-item">
+                                          <NavLink className="nav-link" to="/login">Login</NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                          <NavLink className="nav-link" to="/signup">Signup</NavLink>
+                                    </li>
+                                 </>
+                              }
+                              
+                              
                               
                               
                            </ul>
