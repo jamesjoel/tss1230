@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import OwerNavBar from '../OwerNavBar/OwerNavBar'
 
 const Header = () => {
 
@@ -49,6 +50,7 @@ const Header = () => {
                                     <li className="nav-item">
                                        <NavLink className="nav-link" to="/logout">Logout</NavLink>
                                     </li>
+                                    
                                  </>
                                   : 
                                   <>
@@ -65,21 +67,16 @@ const Header = () => {
                               
                               
                            </ul>
+                           {
+                              localStorage.getItem("access-token") ? <span className='navbar-text text-light badge badge-dark' style={{ fontSize : '16px', marginTop : "-15px", padding : "12px"}}> { localStorage.getItem("name") } </span> : ''
+                           }
                         </div>
                      </nav>
                   </div>
                </div>
             </div>
          </div>
-         <div className='container-fluid' style={{backgroundColor : "#FE080A"}}>
-            <div className="container">
-               <ul className='nav justify-content-end'>
-                  <li className='nav-item'>
-                     <NavLink to='/hotels/login' className='nav-link text-light'><i className="fa fa-map-marker" aria-hidden="true"></i> List Your Hotels</NavLink>
-                  </li>
-               </ul>
-            </div>
-         </div>
+         <OwerNavBar />
       </header>
     </>
   )

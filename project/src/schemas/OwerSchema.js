@@ -5,6 +5,7 @@ let owerSchema = YUP.object({
     email : YUP.string().email("This Email Id is Not correct").required("Insert Email Id"),
     username : YUP.string().required("Insert Your Username"),
     password : YUP.string().matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/, {message : 'Your Password Should be at least 1 number, 1 uppercase, 1 lowercase and min length 5 charator'}).required("Insert Password"),
+    hotelname : YUP.string().required("Insert Your Hotel/Property Name"),
     repass : YUP.string().oneOf([YUP.ref('password')], "Password and Confirm Password Should be same").required("Insert Your Re-Password"),
     address : YUP.string().required("Insert Your Full Address"),
     city : YUP.string().required("Select Your City"),

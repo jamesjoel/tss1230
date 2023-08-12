@@ -18,16 +18,18 @@ const Login = () => {
         
         onSubmit : (formData)=>{
             axios.post(`${API}/user/auth`, formData).then(response=>{
+                
                 if(response.data.success == true){
                     let token = response.data.token;
                     localStorage.setItem("access-token", token);
+                    localStorage.setItem("name", response.data.name);
                     navigate("/myaccount");
                 }
                 else{
-                    if(response.data.errType == 1){
+                    if(response.data.errType === 1){
                         setErrMsg("This Username/Email and Password is not found");
                     }
-                    if(response.data.errType == 2){
+                    if(response.data.errType === 2){
                         setErrMsg("This Password is not correct");
                     }
                 }

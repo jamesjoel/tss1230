@@ -8,6 +8,10 @@ import HotelsLogin from '../components/pages/Hotels/Login'
 import Registration from '../components/pages/Hotels/Registration'
 import MyAccount from '../components/pages/MyAccount/MyAccount'
 import Logout from '../components/pages/Logout/Logout'
+import Dashboard from '../components/pages/HotelOwers/Dashboard'
+import OwnerLogout from '../components/pages/HotelOwers/Logout'
+import MyHotels from '../components/pages/HotelOwers/MyHotels'
+import AddHotel from '../components/pages/HotelOwers/AddHotel'
 
 const AllRoutes = () => {
   return (
@@ -19,6 +23,12 @@ const AllRoutes = () => {
             <Route path='signup' element={<Signup />} />
             <Route path='myaccount' element={<MyAccount />} />
             <Route path='logout' element={<Logout />} />
+
+            <Route path='owner/dashboard' element={<Dashboard />} />
+            <Route path='owner/logout' element={<OwnerLogout />} />
+            <Route path='owner/myhotels' element={<MyHotels />} />
+            <Route path='owner/add-hotel' element={<AddHotel />} />
+
             <Route path='hotels/login' element={<HotelsLogin />} />
             <Route path='hotels/registration' element={<Registration />} />
          </Routes>

@@ -18,6 +18,7 @@ const Registration = () => {
             ownername : "",
             email : "",
             username : "",
+            hotelname : "",
             password : "",
             address : "",
             contact : "",
@@ -49,6 +50,13 @@ const Registration = () => {
                     <input name='ownername' onChange={handleChange} type='text' placeholder='Full Name' className={'form-control ' + (errors.ownername && touched.ownername ? 'is-invalid' : '')} />
                     {
                         errors.ownername && touched.ownername ? <small className='text-danger'>{errors.ownername}</small> : ''
+                    }
+                </div>
+                <div className="form-group">
+                    <label>Your Hotel/Property Name</label>
+                    <input name='hotelname' onChange={handleChange} type='text' placeholder='Hotel/Propery Name' className={'form-control ' + (errors.hotelname && touched.hotelname ? 'is-invalid' : '')} />
+                    {
+                        errors.hotelname && touched.hotelname ? <small className='text-danger'>{errors.hotelname}</small> : ''
                     }
                 </div>
                 <div className="form-group">

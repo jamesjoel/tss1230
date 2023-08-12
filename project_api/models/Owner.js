@@ -6,6 +6,7 @@ const OwnerSchema = mongoose.Schema({
     email : String,
     username : String,
     password : String,
+    hotelname : String,
     address : String,
     contact : String,
     city : String

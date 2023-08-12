@@ -5,10 +5,11 @@ const MyAccount = () => {
 
   let navigate = useNavigate();
   useEffect(()=>{
-    if(! localStorage.getItem("access-token")){
-      navigate("/login");
+    if(! localStorage.getItem("access-token"))
+    {
+        navigate("/login");
     }
-  }, [])
+  })
 
   return (
     <>

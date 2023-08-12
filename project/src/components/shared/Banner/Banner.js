@@ -1,6 +1,23 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import { API } from '../../../constants/API'
 
 const Banner = () => {
+
+   let [city, setCity] = useState([]);
+   let [searchText, setSearchText] = useState("");
+   useEffect(()=>{
+      axios.get(`${API}/city`).then(response=>{
+         setCity(response.data);
+      })
+   }, [])
+
+   let search = (e)=>{
+      let a = e.target.value;
+      
+      setSearchText(e.target.value);
+   }
+
   return (
     <>
     <section className="banner_main">
@@ -51,7 +68,19 @@ const Banner = () => {
                                  <input className="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy" />
                               </div>
                               <div className="col-md-12">
-                                 <button className="book_btn">Book Now</button>
+                                 <span>Location</span>
+                                 
+                                 <input className="online_book" placeholder="Location" type="text" value={searchText} onChange={(e)=>search(e)} />
+                                 <div style={{backgroundColor : "white", display : searchText ? 'block' : 'none', width : "382px", height : "150px", overflowY : 'scroll', zIndex : "9999", marginTop : "-25px", position : "absolute"}} >
+                                    <ul style={{margin : "5px"}}>
+                                       {
+                                          city.map(c => <li>{c.name}</li>)
+                                       }
+                                    </ul>
+                                 </div>
+                              </div>
+                              <div className="col-md-12">
+                                 <button className="book_btn">Search Hotel</button>
                               </div>
                            </div>
                         </form>

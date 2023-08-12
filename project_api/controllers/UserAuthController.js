@@ -17,7 +17,7 @@ routes.post("/", async(req, res)=>{
 
             let token = jwt.sign(obj, key, { expiresIn : '2d'});
 
-            res.send({success : true, token : token });
+            res.send({success : true, token : token, name : result[0].fullname });
         }else{
             res.send({ success : false, errType : 2});
         }
