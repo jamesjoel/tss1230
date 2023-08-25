@@ -11,6 +11,9 @@ import owerSchema from '../../../schemas/OwerSchema'
 const Registration = () => {
 
     let navigate = useNavigate();
+    let [city, setCity] = useState([]);
+    let [state, setState] = useState([]);
+    let [selectedState, setSelectedState] = useState("");
 
     let { handleSubmit, handleChange, errors, touched } = useFormik({
         validationSchema : owerSchema,
@@ -23,6 +26,7 @@ const Registration = () => {
             address : "",
             contact : "",
             city : "",
+            state : "",
             repass : ""
         },
         onSubmit : (formData)=>{
@@ -32,13 +36,15 @@ const Registration = () => {
         }
     });
 
-    let [city, setCity] = useState([]);
     useEffect(()=>{
-        axios.get(`${API}/city`).then((response)=>{
-            console.log(response.data);
-            setCity(response.data);
+        axios.get(`${API}/city/state`).then(response=>{
+            setState(response.data);
         })
     }, [])
+   
+    
+   
+    
   return (
     <div className="container" style={{minHeight : "650px"}}>
         <form onSubmit={handleSubmit}>
@@ -80,13 +86,21 @@ const Registration = () => {
                     <label>Full Address</label>
                     <textarea name='address' onChange={handleChange} placeholder='Address' className={'form-control ' + (errors.address && touched.address ? 'is-invalid' : '')} ></textarea>
                 </div>
+                
+                <div className="form-group">
+                    <label>State</label>
+                    <select className={'form-control ' + (errors.state && touched.state ? 'is-invalid' : '')} name='state' onChange={handleChange}>
+                        <option>Select</option>
+                        {
+                            state.map((s, n)=><option key={n}>{s}</option>)
+                        }
+                    </select>
+                </div>
                 <div className="form-group">
                     <label>City</label>
                     <select className={'form-control ' + (errors.city && touched.city ? 'is-invalid' : '')} name='city' onChange={handleChange}>
                         <option>Select</option>
-                        {
-                            city.map(c => <option key={c._id}>{c.name}</option>)
-                        }
+                        
                     </select>
                 </div>
                 <div className="form-group">

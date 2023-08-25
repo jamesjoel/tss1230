@@ -9,7 +9,9 @@ const OwnerSchema = mongoose.Schema({
     hotelname : String,
     address : String,
     contact : String,
-    city : String
+    city : String,
+    state : String
+    
 })
 
 module.exports = mongoose.model("owner", OwnerSchema);

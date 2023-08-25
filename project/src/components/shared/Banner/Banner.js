@@ -4,18 +4,41 @@ import { API } from '../../../constants/API'
 
 const Banner = () => {
 
+   let [showDiv, setShowDiv] = useState(false);
    let [city, setCity] = useState([]);
+   let [filteredCity, setFilteredCity] = useState([]);
    let [searchText, setSearchText] = useState("");
    useEffect(()=>{
       axios.get(`${API}/city`).then(response=>{
          setCity(response.data);
       })
    }, [])
+   /* 
+   MUMBAI         =[M, U, M, B, A, I]
+   mumbai
+   MuMbai
 
+   Mumbai
+   */
    let search = (e)=>{
-      let a = e.target.value;
-      
+      let a = e.target.value;  // mumbai
+      if(a.length > 0){
+         setShowDiv(true);
+         let temp = a.split(""); // [m,u,m,B,a,i]
+         let firstletter = temp[0].toUpperCase(); // M
+         temp.splice(0, 1); // [u, m, B, a, i]
+         let remainString = temp.join(""); // umBai
+         remainString = remainString.toLowerCase(); // umbai
+         let finaleString = firstletter+remainString;  // Mumbai
+         let arr = city.filter(value=>value.name.startsWith(finaleString));
+         setFilteredCity(arr);
+      }
       setSearchText(e.target.value);
+   }
+
+   let selectText = (e)=>{
+      setSearchText(e.target.innerHTML);
+      setShowDiv(false);
    }
 
   return (
@@ -71,10 +94,10 @@ const Banner = () => {
                                  <span>Location</span>
                                  
                                  <input className="online_book" placeholder="Location" type="text" value={searchText} onChange={(e)=>search(e)} />
-                                 <div style={{backgroundColor : "white", display : searchText ? 'block' : 'none', width : "382px", height : "150px", overflowY : 'scroll', zIndex : "9999", marginTop : "-25px", position : "absolute"}} >
+                                 <div style={{backgroundColor : "white", display : showDiv ? 'block' : 'none', width : "382px", height : "150px", overflowY : 'scroll', zIndex : "9999", marginTop : "-25px", position : "absolute"}} >
                                     <ul style={{margin : "5px"}}>
                                        {
-                                          city.map(c => <li>{c.name}</li>)
+                                          filteredCity.map(c => <li onClick={(e)=>selectText(e)} style={{cursor : "pointer"}}>{c.name}</li>)
                                        }
                                     </ul>
                                  </div>
