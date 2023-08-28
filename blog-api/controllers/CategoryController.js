@@ -8,7 +8,7 @@ routes.get("/", async(req, res)=>{
 routes.get("/:id", async(req, res)=>{
     let id = req.params.id;
     let result = await Category.find({_id : id});
-    res.send(result);
+    res.send(result[0]);
 })
 routes.post("/", async(req, res)=>{
     await Category.create(req.body);

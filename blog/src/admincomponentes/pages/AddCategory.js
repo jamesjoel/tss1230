@@ -1,11 +1,15 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useFormik} from 'formik'
 import axios from 'axios'
 import {API} from '../../util/API'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 const AddCategory = () => {
+    let param = useParams();
     let navigate = useNavigate();
-    let { handleSubmit, handleChange } = useFormik({
+
+    
+
+    let { handleSubmit, handleChange, values } = useFormik({
         initialValues : {
             name : ""
         },
@@ -16,13 +20,24 @@ const AddCategory = () => {
             })
         }
     })
+
+    useEffect(()=>{
+        if(param.id){
+            axios.get(`${API}/category/${param.id}`, {
+                headers : {'Authorization' : localStorage.getItem("lorem")}
+            }).then(response=>{
+                console.log(response.data);
+            })
+        }
+    }, [])
+
   return (
     <div className="container my-4">
         <form onSubmit={handleSubmit}>
         <div className="row">
             <div className="col-md-6 offset-md-3">
                 <div className='form-group'>
-                    <label>Category Name</label>
+                    <label>New Category Name</label>
                     <input type='text' name='name' onChange={handleChange} className='form-control' />
                 </div>
                 <br />

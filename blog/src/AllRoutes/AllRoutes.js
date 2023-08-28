@@ -49,6 +49,7 @@ const AllRoutes = () => {
           <Route path='bloggers' element={<Bloggers />} />
           <Route path='categories' element={<Categories />} />
           <Route path='categories/add' element={<AddCategory />} />
+          <Route path='categories/update/:id' element={<AddCategory />} />
           <Route path='logout' element={<AdminLogout />} />
         </Route>
 

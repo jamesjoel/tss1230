@@ -20,6 +20,17 @@ routes.get("/user", async(req, res)=>{
     }
 })
 
+routes.delete("/user/:id", async(req, res)=>{
+    if(req.headers.authorization){
+        let id = req.params.id;
+        await Blogs.deleteMany({_id : id});
+        res.send({ success : true });
+
+    }else{
+        res.send({ success : false });
+    }
+})
+
 routes.post("/", async(req, res)=>{
     let token = req.headers.authorization;
     let obj = jwt.decode(token, key);

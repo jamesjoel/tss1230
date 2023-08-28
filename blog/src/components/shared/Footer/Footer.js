@@ -5,8 +5,8 @@ const Footer = () => {
 	let x = useRef();
   return (
 <>
-<h1 ref={x}>hello world</h1>
-<button onClick={()=>console.log(x.current.innerHTML)}>OK</button>
+{/* <h1 ref={x}>hello world</h1>
+<button onClick={()=>console.log(x.current.innerHTML)}>OK</button> */}
 <section className="footer-2 section-padding gray-bg pb-5">
 		<div className="container">
 			<div className="row justify-content-center">

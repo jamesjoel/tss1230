@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useFormik} from 'formik'
 import axios from "axios"
 import {API} from '../../util/API'
@@ -6,6 +6,12 @@ import {useNavigate} from 'react-router-dom'
 const Login = () => {
 
     let navigate = useNavigate();
+
+    useEffect(()=>{
+        if(localStorage.getItem("lorem")){
+            navigate("/admin/dashboard");
+        }
+    }, [])
 
     let { handleSubmit, handleChange } = useFormik({
         initialValues : {

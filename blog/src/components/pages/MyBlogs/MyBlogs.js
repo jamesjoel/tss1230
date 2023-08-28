@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import {API} from '../../../util/API'
 const MyBlogs = () => {
+  let delBtn = useRef();
   let [allBlogs, setAllBlogs] = useState([]);
+  let [blog, setBlog] = useState({});
   useEffect(()=>{
     axios.get(`${API}/blogs/user`, {
       headers : {'Authorization' : localStorage.getItem("access-token")}
@@ -11,6 +13,22 @@ const MyBlogs = () => {
       setAllBlogs(response.data);
     })
   }, [])
+
+  let askDelete = (obj)=>{
+      setBlog(obj);
+  }
+  let confDelete = ()=>{
+      axios.delete(`${API}/blogs/user/${blog._id}`, {
+        headers  : {'Authorization' : localStorage.getItem("access-token")}
+      }).then(response=>{
+        if(response.data.success==true){
+          delBtn.current.click();
+          setAllBlogs(()=>{
+            return allBlogs.filter(value=> value != blog);
+          })
+        }
+      })
+  }
   return (
     <>
         <div className="container my-5">
@@ -24,6 +42,7 @@ const MyBlogs = () => {
                           <th>S.No.</th>
                           <th>Title</th>
                           <th>Category</th>
+                          <th>Delete</th>
                         </tr>
 
                       </thead>
@@ -35,6 +54,7 @@ const MyBlogs = () => {
                                 <td>{index+1}</td>
                                 <td>{blog.title}</td>
                                 <td>{blog.category}</td>
+                                <td><button data-toggle="modal" data-target='#delModal' onClick={()=>askDelete(blog)} className='btn btn-danger btn-sm'>Delete</button></td>
                               </tr>
                             )
                           })
@@ -44,6 +64,22 @@ const MyBlogs = () => {
                     </table>
                 </div>
             </div>
+        </div>
+
+
+        <div className='modal fade' id='delModal'>
+          <div className='modal-dialog'>
+            <div className='modal-content'>
+              <div className='modal-header'>Delete Blogs !</div>
+              <div className='modal-body'>
+                  <p>Are you sure want to delete {blog ? <b>{blog.title}</b> : ''} ?</p>
+              </div>
+              <div className='modal-footer'>
+                <button className='btn btn-danger' onClick={confDelete}>Delete</button>
+                <button className='btn btn-info' ref={delBtn} data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
         </div>
     </>
   )

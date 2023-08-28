@@ -30,6 +30,10 @@ const Categories = () => {
     })
   }
 
+  let update = (obj)=>{
+    navigate(`/admin/categories/update/${obj._id}`);
+  }
+
   return (
     <>
     <div className="container my-4">
@@ -41,6 +45,7 @@ const Categories = () => {
               <tr>
                 <th>S.No.</th>
                 <th>Category Name</th>
+                <th>Update</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -51,6 +56,7 @@ const Categories = () => {
                     <tr key={value._id}>
                       <td>{index+1}</td>
                       <td>{value.name}</td>
+                      <td><button onClick={()=>update(value)} className='btn btn-info btn-sm'>Update</button></td>
                       <td><button onClick={()=>askDelete(value)} data-toggle="modal" data-target="#delModal" className='btn btn-danger btn-sm'>Delete</button></td>
                     </tr>
                   )
