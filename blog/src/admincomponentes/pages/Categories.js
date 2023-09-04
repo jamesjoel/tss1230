@@ -57,6 +57,7 @@ const Categories = () => {
                       <td>{index+1}</td>
                       <td>{value.name}</td>
                       <td><button onClick={()=>update(value)} className='btn btn-info btn-sm'>Update</button></td>
+                      {/* <td><NavLink to={`/admin/categories/update/${value._id}`} className="btn btn-info">Update</NavLink></td> */}
                       <td><button onClick={()=>askDelete(value)} data-toggle="modal" data-target="#delModal" className='btn btn-danger btn-sm'>Delete</button></td>
                     </tr>
                   )

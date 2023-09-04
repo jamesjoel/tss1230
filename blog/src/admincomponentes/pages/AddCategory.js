@@ -9,39 +9,47 @@ const AddCategory = () => {
 
     
 
-    let { handleSubmit, handleChange, values } = useFormik({
+    let { handleSubmit, handleChange, values, setFieldValue } = useFormik({
+        enableReinitialize : true,
         initialValues : {
             name : ""
         },
         onSubmit : (formData)=>{
-            axios.post(`${API}/category`, formData).then(response=>{
-                // console.log(response.data);
-                navigate("/admin/categories");
-            })
+            if(param.a){
+                axios.put(`${API}/category/${param.a}`, formData).then(response=>{
+                    // console.log(response.data);
+                    navigate("/admin/categories");
+                })
+            }else{
+
+                axios.post(`${API}/category`, formData).then(response=>{
+                    // console.log(response.data);
+                    navigate("/admin/categories");
+                })
+            }
         }
     })
 
     useEffect(()=>{
-        if(param.id){
-            axios.get(`${API}/category/${param.id}`, {
-                headers : {'Authorization' : localStorage.getItem("lorem")}
-            }).then(response=>{
-                console.log(response.data);
+        if(param.a){
+            axios.get(`${API}/category/${param.a}`).then(response=>{
+                setFieldValue("name", response.data.name)
             })
         }
     }, [])
 
   return (
     <div className="container my-4">
+        
         <form onSubmit={handleSubmit}>
         <div className="row">
             <div className="col-md-6 offset-md-3">
                 <div className='form-group'>
-                    <label>New Category Name</label>
-                    <input type='text' name='name' onChange={handleChange} className='form-control' />
+                    <label>{ param.a ? 'Update' : 'Add New' } Category Name</label>
+                    <input value={values.name} type='text' name='name' onChange={handleChange} className='form-control' />
                 </div>
                 <br />
-                <button type='submit' className='btn btn-primary'>Add</button>
+                <button type='submit' className='btn btn-primary'>{param.a ? 'Update' : 'Add'}</button>
             </div>
         </div>
         </form>
