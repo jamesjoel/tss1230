@@ -1,10 +1,20 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {useFormik} from 'formik';
 import { API } from '../../../util/API';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 const Signup = () => {
+    let [city, setCity] = useState([]);
+    let [state, setState] = useState([]);
     let navigate = useNavigate();
+
+    useEffect(()=>{
+        
+        axios.get(`${API}/city/state`).then(response=>{
+            setState(response.data);
+        })
+    }, [])
+
     let { handleSubmit, handleChange, errors, touched } = useFormik({
         initialValues : {
             fullname : "",
@@ -13,15 +23,26 @@ const Signup = () => {
             address : "",
             city : "",
             contact : "",
+            state : "",
             repassword : ""
         },
         onSubmit : (formData)=>{
+            console.log(formData);
+            return;
             axios.post(`${API}/user/signup`, formData).then(response=>{
                 navigate("/login");
             })
         }
 
     })
+
+
+    let getCity = (e)=>{
+        let x = e.target.value;
+        axios.get(`${API}/city/state/${x}`).then(response=>{
+            setCity(response.data);
+        })
+    }
   return (
     <div className='container' style={{minHeight  : "700px"}}>
         <form onSubmit={handleSubmit}>
@@ -54,12 +75,21 @@ const Signup = () => {
                     </div>
 
                     <div className='card-body'>
+                        <label>State</label>
+                        <select className='form-control' onChange={(e)=>{ handleChange(e); getCity(e) }} name='state'>
+                            <option>Select</option>
+                            {
+                                state.map((value, index)=><option key={index}>{value}</option>)
+                            }
+                        </select>
+                    </div>
+                    <div className='card-body'>
                         <label>City</label>
                         <select className='form-control' onChange={handleChange} name='city'>
-                            <option>Select</option>
-                            <option>Indoer</option>
-                            <option>Mumbai</option>
-                            <option>Pune</option>
+                            <option>Select State First</option>
+                            {
+                                city.map(value=><option key={value._id}>{value.name}</option>)
+                            }
                         </select>
                     </div>
                     <div className='card-body'>
@@ -81,3 +111,11 @@ const Signup = () => {
 }
 
 export default Signup
+
+/*
+
+    
+
+
+
+*/

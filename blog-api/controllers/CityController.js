@@ -11,5 +11,12 @@ routes.get("/state", async(req, res)=>{
     res.send(result);
 })
 
+routes.get("/state/:a", async(req, res)=>{
+    let b = req.params.a;
+    let result = await City.find({ state : b});  
+    res.send(result);
+})
+
+
 
 module.exports = routes;
