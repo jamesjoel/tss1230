@@ -20,6 +20,7 @@ import AdminLogout from '../admincomponentes/pages/Logout'
 import Bloggers from '../admincomponentes/pages/Bloggers'
 import Categories from '../admincomponentes/pages/Categories'
 import AddCategory from '../admincomponentes/pages/AddCategory'
+import Image from '../admincomponentes/pages/Image'
 
 const AllRoutes = () => {
   return (
@@ -46,6 +47,7 @@ const AllRoutes = () => {
         <Route path='admin' element={<AdminContainer />}>
           <Route path='' element={<AdminLogin />} />
           <Route path='dashboard' element={<Dashboard />} />
+          <Route path='image' element={<Image />} />
           <Route path='bloggers' element={<Bloggers />} />
           <Route path='categories' element={<Categories />} />
           <Route path='categories/add' element={<AddCategory />} />

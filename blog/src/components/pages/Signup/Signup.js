@@ -27,8 +27,8 @@ const Signup = () => {
             repassword : ""
         },
         onSubmit : (formData)=>{
-            console.log(formData);
-            return;
+            // console.log(formData);
+            // return;
             axios.post(`${API}/user/signup`, formData).then(response=>{
                 navigate("/login");
             })
