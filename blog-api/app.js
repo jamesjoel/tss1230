@@ -6,6 +6,8 @@ const upload = require("express-fileupload")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
+app.use(express.static(__dirname+"/assets"));
+
 app.use(upload());
 app.use(cors());
 app.use(routes);

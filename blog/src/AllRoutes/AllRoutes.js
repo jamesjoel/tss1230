@@ -21,12 +21,14 @@ import Bloggers from '../admincomponentes/pages/Bloggers'
 import Categories from '../admincomponentes/pages/Categories'
 import AddCategory from '../admincomponentes/pages/AddCategory'
 import Image from '../admincomponentes/pages/Image'
+import ViewBlogsByCategory from '../components/pages/ViewBlogsByCategory/ViewBlogsByCategory'
 
 const AllRoutes = () => {
   return (
     <Routes>
         <Route path='' element={<MainContainer />}>
           <Route path='' element={<Home />} />
+          <Route path='view-blogs-by-category/:cate' element={<ViewBlogsByCategory />} />
           <Route path='login' element={<Login />} />
           <Route path='signup' element={<Signup />} />
           <Route path='logout' element={<Logout />} />

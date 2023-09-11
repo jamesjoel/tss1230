@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { useFormik } from 'formik'
 import axios from 'axios'
 import { API } from '../../../util/API'
 import { useNavigate } from 'react-router-dom'
 
 const AddBlog = () => {
+    let myfile = useRef();
     let [cate, setCate] = useState([]);
     let navigate = useNavigate();
 
@@ -18,10 +19,16 @@ const AddBlog = () => {
         initialValues : {
             title : "",
             category : "",
-            detail : ""
+            detail : "",
+            image : ""
         },
         onSubmit : (formData)=>{
-            axios.post(`${API}/blogs`, formData, {
+            // console.log(myfile.current.files[0])
+            let frm = new FormData();
+            frm.append("image", myfile.current.files[0]);
+            frm.append("formdata", JSON.stringify(formData));
+            
+            axios.post(`${API}/blogs`, frm, {
                 headers : {'Authorization' : localStorage.getItem("access-token")}
             }).then(response=>{
                 navigate("/blogger/my-blogs");
@@ -44,6 +51,10 @@ const AddBlog = () => {
                         <option>Select</option>
                         { cate.map((value, index)=> <option key={value._id}>{value.name}</option>) }
                     </select>
+                </div>
+                <div className='form-group'>
+                    <label>Select Your Realeted Image</label>
+                    <input ref={myfile} type='file' onChange={handleChange} name='image'  className='form-control' />
                 </div>
                 <div className='form-group'>
                     <label>Blog Detail</label>

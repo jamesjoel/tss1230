@@ -55,7 +55,7 @@ const Header = () => {
 									</a>
 									<div className="dropdown-menu" aria-labelledby="navbarDropdown2">
 										{
-											cate.map((value, index)=><NavLink key={value._id} className="dropdown-item" to="/">{value.name}</NavLink>)
+											cate.map((value, index)=><NavLink key={value._id} className="dropdown-item" to={"/view-blogs-by-category/"+value.name}>{value.name}</NavLink>)
 										}
 										
 									</div>

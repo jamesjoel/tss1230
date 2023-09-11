@@ -2,6 +2,7 @@ const routes = require("express").Router();
 const Blogs = require("../models/Blogs");
 const jwt = require("jsonwebtoken")
 const key = require("../config/secretKey")
+const path = require("path");
 
 routes.get("/", async(req, res)=>{
     let result = await Blogs.find();
@@ -20,6 +21,11 @@ routes.get("/user", async(req, res)=>{
     }
 })
 
+routes.get("/:a", async(req, res)=>{
+    let result = await Blogs.find({ category : req.params.a});
+    res.send(result);
+})
+
 routes.delete("/user/:id", async(req, res)=>{
     if(req.headers.authorization){
         let id = req.params.id;
@@ -32,12 +38,26 @@ routes.delete("/user/:id", async(req, res)=>{
 })
 
 routes.post("/", async(req, res)=>{
+
+    
+
     let token = req.headers.authorization;
     let obj = jwt.decode(token, key);
     let id = obj.id;
-    req.body.bloggerid = id;
-    await Blogs.create(req.body);
-    res.send({ success : true });
+
+    let data = JSON.parse(req.body.formdata);
+    let file = req.files.image;
+
+    file.mv(path.resolve()+"/assets/blog-images/"+file.name, async(err)=>{
+        if(err){
+            console.log(err);
+            return;
+        }
+        data.image = file.name;
+        data.bloggerid = id;
+        await Blogs.create(data);
+        res.send({ success : true });
+    });
 
 })
 
