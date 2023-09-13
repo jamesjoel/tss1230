@@ -3,9 +3,22 @@ import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import {API} from '../../../util/API'
 const MyBlogs = () => {
+
+
   let delBtn = useRef();
+
+
+
   let [allBlogs, setAllBlogs] = useState([]);
+
+
+
+
+
+
   let [blog, setBlog] = useState({});
+
+  
   useEffect(()=>{
     axios.get(`${API}/blogs/user`, {
       headers : {'Authorization' : localStorage.getItem("access-token")}

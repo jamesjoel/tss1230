@@ -8,6 +8,11 @@ routes.get("/", async(req, res)=>{
     let result = await Blogs.find();
     res.send(result)
 })
+
+
+
+
+
 routes.get("/user", async(req, res)=>{
     if(req.headers.authorization){
 
@@ -38,8 +43,6 @@ routes.delete("/user/:id", async(req, res)=>{
 })
 
 routes.post("/", async(req, res)=>{
-
-    
 
     let token = req.headers.authorization;
     let obj = jwt.decode(token, key);
