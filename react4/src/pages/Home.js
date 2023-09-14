@@ -3,12 +3,15 @@ import { useSelector } from 'react-redux'
 
 const Home = () => {
 
-    let a = useSelector(x => x);
+    let data = useSelector(state => state);
+    
 
   return (
     <>
-    <div>Home</div>
-    <h1>{a.name}</h1>
+        <h2>Home Page</h2>
+        {
+            data.map(value=><h3>{value}</h3>)
+        }
     </>
   )
 }
