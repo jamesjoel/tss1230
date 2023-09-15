@@ -4,9 +4,13 @@ import App from './App';
 
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit'
-import DemoSlice from './redux/DemoSlice';
 
-let store = configureStore({ reducer : DemoSlice})
+import TeacherSlice from './redux/TeacherSlice'
+
+let store = configureStore({
+   reducer : TeacherSlice
+})
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
