@@ -3,9 +3,12 @@ import {useFormik} from 'formik'
 import axios from "axios"
 import {API} from '../../util/API'
 import {useNavigate} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { adminLogin } from '../../redux/AdminAuthSlice'
 const Login = () => {
 
     let navigate = useNavigate();
+    let disp = useDispatch();
 
     useEffect(()=>{
         if(localStorage.getItem("lorem")){
@@ -23,6 +26,7 @@ const Login = () => {
                 console.log(response.data);
                 if(response.data.success==true){
                     localStorage.setItem("lorem", response.data.admintoken)
+                    disp(adminLogin());
                     navigate("/admin/dashboard");
                 }
             })

@@ -1,11 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector, useDispatch} from 'react-redux'
+import { adminLogin } from '../../redux/AdminAuthSlice'
 
 const Header = () => {
-  let [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  let disp = useDispatch();
+  
+  let isAdminLogginIn = useSelector(state=>state.AdminAuthSlice);
+
   useEffect(()=>{
     if(localStorage.getItem("lorem")){
-      setIsAdminLoggedIn(true)
+        disp(adminLogin())
     }
   }, [])
   return (
@@ -14,7 +19,7 @@ const Header = () => {
   
             <NavLink className="navbar-brand" to="/admin">Administrator Panel</NavLink>
            {
-            isAdminLoggedIn ? (<ul className="navbar-nav">
+            isAdminLogginIn.admin ? (<ul className="navbar-nav">
               <li className="nav-item">
                   <NavLink className="nav-link" to="/admin/dashboard">Dashboard</NavLink>
               </li>

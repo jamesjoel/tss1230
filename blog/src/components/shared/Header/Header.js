@@ -3,16 +3,23 @@ import {NavLink} from 'react-router-dom';
 import axios  from 'axios';
 
 import { API } from '../../../util/API';
+import { useSelector, useDispatch } from 'react-redux'
+import { doLogin } from '../../../redux/UserAuthSlice'
+
+
 
 
 const Header = () => {
 	let [cate, setCate] = useState([]);
 	let [isLoggedIn, setIsLoggedIn] = useState(false)
+	let disp = useDispatch();
+
+	let check = useSelector(state=>state.UserAuthSlice);
 
 	useEffect(()=>{
 		if(localStorage.getItem("access-token"))
 		{
-			setIsLoggedIn(true);	
+			disp(doLogin());
 		}
 	}, [])
 
@@ -61,7 +68,7 @@ const Header = () => {
 									</div>
 								</li>
 								{
-									isLoggedIn  ? (
+									check.login  ? (
 										<>
 										<li className="nav-item dropdown">
 												<NavLink  data-toggle="dropdown" className="nav-link dropdown-toggle">{localStorage.getItem("name")}</NavLink>

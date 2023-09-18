@@ -3,8 +3,12 @@ import axios from 'axios'
 import { useFormik } from 'formik'
 import { API } from '../../../util/API'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { doLogin } from '../../../redux/UserAuthSlice'
+
 const Login = () => {
     let navigate = useNavigate();
+    let disp = useDispatch();
     let { handleChange, handleSubmit, errors, touched } = useFormik({
         
         initialValues : {
@@ -18,6 +22,7 @@ const Login = () => {
                 if(response.data.success == true){
                     localStorage.setItem('access-token', response.data.token);
                     localStorage.setItem('name', response.data.name);
+                    disp(doLogin());
                     navigate("/blogger/my-account");
                 }
             })
