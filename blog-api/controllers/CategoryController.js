@@ -12,8 +12,9 @@ routes.get("/:id", async(req, res)=>{
     res.send(result[0]);
 })
 routes.post("/", async(req, res)=>{
-    await Category.create(req.body);
-    res.send({ success : true });
+    let result = await Category.create(req.body);
+    
+    res.send({ success : true, result : result });
 })
 
 

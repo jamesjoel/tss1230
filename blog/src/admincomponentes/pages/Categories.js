@@ -2,9 +2,12 @@ import React, {useEffect, useState, useRef} from 'react'
 import axios from 'axios'
 import {API} from '../../util/API'
 import {NavLink, useNavigate} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { removeCate } from '../../redux/CategorySlice'
 
 const Categories = () => {
   let delBtn = useRef();
+  let disp = useDispatch();
   let navigate = useNavigate();
   let [cate, setCate] = useState({});
   let [allCate, setAllCate] = useState([]);
@@ -27,6 +30,7 @@ const Categories = () => {
       
       delBtn.current.click();
       setAllCate(()=>allCate.filter(value => value != cate))
+      disp(removeCate(cate));
     })
   }
 

@@ -3,7 +3,12 @@ import {useFormik} from 'formik'
 import axios from 'axios'
 import {API} from '../../util/API'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useDispatch } from  'react-redux'
+import { addNewCate } from '../../redux/CategorySlice'
+
+
 const AddCategory = () => {
+    let disp = useDispatch();
     let param = useParams();
     let navigate = useNavigate();
 
@@ -24,6 +29,8 @@ const AddCategory = () => {
 
                 axios.post(`${API}/category`, formData).then(response=>{
                     // console.log(response.data);
+                    
+                    disp(addNewCate(response.data.result));
                     navigate("/admin/categories");
                 })
             }

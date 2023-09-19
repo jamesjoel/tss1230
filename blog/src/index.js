@@ -7,8 +7,9 @@ import { Provider } from 'react-redux'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import UserAuthSlice from './redux/UserAuthSlice';
 import AdminAuthSlice from './redux/AdminAuthSlice'
+import CategorySlice from './redux/CategorySlice';
 
-let rootReducer = combineReducers({ UserAuthSlice, AdminAuthSlice })
+let rootReducer = combineReducers({ UserAuthSlice, AdminAuthSlice, CategorySlice })
 
 let store = configureStore({ reducer : rootReducer })
 

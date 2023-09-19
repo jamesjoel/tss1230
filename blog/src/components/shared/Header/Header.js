@@ -5,12 +5,14 @@ import axios  from 'axios';
 import { API } from '../../../util/API';
 import { useSelector, useDispatch } from 'react-redux'
 import { doLogin } from '../../../redux/UserAuthSlice'
+import {add} from '../../../redux/CategorySlice'
+
 
 
 
 
 const Header = () => {
-	let [cate, setCate] = useState([]);
+	
 	let [isLoggedIn, setIsLoggedIn] = useState(false)
 	let disp = useDispatch();
 
@@ -23,11 +25,10 @@ const Header = () => {
 		}
 	}, [])
 
-	useEffect(()=>{
-        axios.get(`${API}/category`).then(response=>{
-            setCate(response.data);
-        })
-    }, [])
+	
+
+
+	let allCate = useSelector(state => state.CategorySlice);
 
   return (
     <header className="header-top bg-grey justify-content-center">
@@ -62,7 +63,7 @@ const Header = () => {
 									</a>
 									<div className="dropdown-menu" aria-labelledby="navbarDropdown2">
 										{
-											cate.map((value, index)=><NavLink key={value._id} className="dropdown-item" to={"/view-blogs-by-category/"+value.name}>{value.name}</NavLink>)
+											allCate.map((value, index)=><NavLink key={value._id} className="dropdown-item" to={"/view-blogs-by-category/"+value.name}>{value.name}</NavLink>)
 										}
 										
 									</div>

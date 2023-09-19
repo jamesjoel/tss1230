@@ -1,8 +1,10 @@
 import React, {useRef} from 'react'
 import { NavLink } from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 const Footer = () => {
 	let x = useRef();
+	let allCate = useSelector(state=>state.CategorySlice);
   return (
 <>
 {/* <h1 ref={x}>hello world</h1>
@@ -13,7 +15,7 @@ const Footer = () => {
 				<div className="col-lg-6">
 					<div className="subscribe-footer text-center">
 						<div className="form-group mb-0">
-							<h2 className="mb-3">Subscribe Newsletter</h2>
+							<h2 className="mb-3">Total Category ({allCate.length})</h2>
 							<p className="mb-4">Subscribe my Newsletter for new blog posts , tips and info.
 							</p>
 							<div className="form-group form-row align-items-center mb-0">
