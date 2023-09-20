@@ -2,10 +2,19 @@ import React, {useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch} from 'react-redux'
 import { adminLogin } from '../../redux/AdminAuthSlice'
+import { getAllStu } from '../../redux/StudentSlice'
+
+
+
 
 const Header = () => {
   let disp = useDispatch();
   
+  
+  disp(getAllStu())
+
+  let allStu = useSelector(state => state.StudentSlice)
+
   let isAdminLogginIn = useSelector(state=>state.AdminAuthSlice);
 
   useEffect(()=>{
@@ -13,6 +22,9 @@ const Header = () => {
         disp(adminLogin())
     }
   }, [])
+
+  
+
   return (
     <>
         <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -31,6 +43,9 @@ const Header = () => {
               </li>
               <li className="nav-item">
                   <NavLink className="nav-link" to="/admin/categories">Categories</NavLink>
+              </li>
+              <li className="nav-item">
+                  <NavLink className="nav-link" to="/admin/student">Student({allStu.length})</NavLink>
               </li>
               <li className="nav-item">
                   <NavLink className="nav-link" to="/admin/logout">Logout</NavLink>

@@ -22,6 +22,7 @@ import Categories from '../admincomponentes/pages/Categories'
 import AddCategory from '../admincomponentes/pages/AddCategory'
 import Image from '../admincomponentes/pages/Image'
 import ViewBlogsByCategory from '../components/pages/ViewBlogsByCategory/ViewBlogsByCategory'
+import Student from '../admincomponentes/pages/Student'
 
 const AllRoutes = () => {
   return (
@@ -49,6 +50,7 @@ const AllRoutes = () => {
         <Route path='admin' element={<AdminContainer />}>
           <Route path='' element={<AdminLogin />} />
           <Route path='dashboard' element={<Dashboard />} />
+          <Route path='student' element={<Student />} />
           <Route path='image' element={<Image />} />
           <Route path='bloggers' element={<Bloggers />} />
           <Route path='categories' element={<Categories />} />
