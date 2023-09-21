@@ -2,7 +2,7 @@ import React from 'react'
 import { URL } from '../../../util/API'
 
 const Blog = (props) => {
-  console.log(new Date(props.data.date))
+  // console.log(new Date(props.data.date))
   return (
     <>
     <div className="col-lg-3 col-md-6">

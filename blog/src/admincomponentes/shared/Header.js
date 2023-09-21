@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch} from 'react-redux'
 import { adminLogin } from '../../redux/AdminAuthSlice'
-import { getAllStu } from '../../redux/StudentSlice'
+import { fetchStu } from '../../redux/StudentSlice'
 
 
 
@@ -11,7 +11,7 @@ const Header = () => {
   let disp = useDispatch();
   
   
-  disp(getAllStu())
+  
 
   let allStu = useSelector(state => state.StudentSlice)
 

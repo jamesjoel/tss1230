@@ -21,7 +21,7 @@ const Home = () => {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div className="row">
                 {
-                  allBlogs.map(value=><Blog data={value} /> )
+                  allBlogs.map(value=><Blog key={value._id} data={value} /> )
                 }
                 
                 
