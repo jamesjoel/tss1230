@@ -19,7 +19,8 @@ routes.put("/:id", async(req, res)=>{
     res.send(result);
 })
 routes.delete("/:id", async(req, res)=>{
-    let result = await Stu.deleteMany({_id : req.params.id})
+    let result = await Stu.findByIdAndDelete({_id : req.params.id})
+    // console.log(result);
     res.send({ success : true, result });
 })
 

@@ -17,10 +17,10 @@ let addStu = createAsyncThunk('add', async (data)=>{
     return response.data;
 })
 
-// let delStu = createAsyncThunk('delete', async (obj)=>{
-//     let response = await axios.delete("http://localhost:8080/api/students/"+obj._id);
-//     return response.data;
-// })
+let delStu = createAsyncThunk('delete', async (obj)=>{
+    let response = await axios.delete("http://localhost:8080/api/students/"+obj._id);
+    return response.data;
+})
 // let updateStu = createAsyncThunk('update', async (obj)=>{
 //     let response = await axios.put("http://localhost:8080/api/students/"+obj._id, obj);
 //     return response.data;
@@ -35,6 +35,9 @@ let StudentSlice = createSlice({
         },
         [addStu.fulfilled] : (state, action)=>{
             state.push(action.payload.result);
+        },
+        [delStu.fulfilled] : (state, action)=>{
+            return state.filter(value=> value._id != action.payload.result._id)
         }
     }
     
@@ -42,4 +45,4 @@ let StudentSlice = createSlice({
 
 export default StudentSlice.reducer;
 
-export {fetchStu, addStu};
+export {fetchStu, addStu, delStu};
