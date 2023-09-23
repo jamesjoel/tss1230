@@ -1,23 +1,34 @@
 import React, {useRef, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
-import { addStu, delStu } from '../../redux/StudentSlice'
+import { addStu, delStu, updateStu } from '../../redux/StudentSlice'
 const Student = () => {
       let closeBtn = useRef();
       let disp = useDispatch();
       let [stu, setStu] = useState({});
+      let [newStu, setNewStu] = useState({});
 
      let allStu = useSelector(state=>state.StudentSlice);
     // let allStu = [];
 
-    let { handleSubmit, handleChange, resetForm, values } = useFormik({
+    let { handleSubmit, handleChange, resetForm, values, setFieldValue } = useFormik({
         enableReinitialize : true,
         initialValues : {
+          _id : "",
           name : "",
           age : ""
         },
         onSubmit : (formData)=>{
-          disp(addStu(formData))
+          if(stu._id){
+            disp(updateStu(formData));
+            setNewStu({ _id : "", name : "", age : ""})
+          }else{
+
+            disp(addStu(formData))
+          }
+          
+          
+          
           resetForm();
         }
     })
@@ -30,6 +41,19 @@ const Student = () => {
       disp(delStu(stu));
       closeBtn.current.click();
     }
+
+    let update = (obj)=>{
+      //console.log(obj)
+      setNewStu(obj);
+      setFieldValue("name", obj.name);
+      setFieldValue("age", obj.age);
+      setFieldValue("_id", obj._id);
+    }
+
+   let resetData = ()=>{
+    resetForm();
+    setNewStu({ _id : "", name : "", age : ""})
+   }
 
   return (
     <>
@@ -46,7 +70,10 @@ const Student = () => {
                 <input name='age' value={values.age} onChange={handleChange}  type='text' className='form-control' />
               </div>
               <br />
-              <button type='submit' className='btn btn-success'>Add</button>
+              <button type='submit' className='btn btn-success'>{ newStu._id ? 'Update' : 'Add' }</button>
+              {
+                newStu._id ? <button type='button' onClick={()=>resetData()} className='btn btn-primary'>Cancel</button> : ''
+              }
           </div>
 
         </div>
@@ -60,6 +87,7 @@ const Student = () => {
                         <th>Name</th>
                         <th>Age</th>
                         <th>Delete</th>
+                        <th>Edit</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -71,6 +99,7 @@ const Student = () => {
                                 <td>{value.name}</td>
                                 <td>{value.age}</td>
                                 <td><button data-toggle="modal" data-target="#delModel" onClick={()=>askDelete(value)} className='btn btn-sm btn-danger'>Del</button></td>
+                                <td><button className='btn btn-sm btn-info' onClick={()=>update(value)}>Edit</button></td>
                               </tr>
                           )}
                           )
