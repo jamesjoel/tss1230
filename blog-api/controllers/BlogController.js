@@ -44,6 +44,8 @@ routes.delete("/user/:id", async(req, res)=>{
 
 routes.post("/", async(req, res)=>{
 
+    
+
     let token = req.headers.authorization;
     let obj = jwt.decode(token, key);
     let id = obj.id;
@@ -51,7 +53,20 @@ routes.post("/", async(req, res)=>{
     let data = JSON.parse(req.body.formdata);
     let file = req.files.image;
 
-    file.mv(path.resolve()+"/assets/blog-images/"+file.name, async(err)=>{
+
+    let type = req.files.image.mimetype; // video/mp4    image/jpeg
+    let arr = type.split("/");
+
+    if(arr[0]=="video")
+    {
+        data.type="video";
+    }
+    if(arr[0]=="image")
+    {
+        data.type="image";
+    }
+
+    file.mv(path.resolve()+"/assets/blog-data/"+file.name, async(err)=>{
         if(err){
             console.log(err);
             return;

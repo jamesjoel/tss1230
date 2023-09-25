@@ -7,7 +7,8 @@ const BlogSchema = mongoose.Schema({
     category : String,
     detail : String,
     date : {type : Date, default : Date.now},
-    image : String
+    image : String,
+    type : String
 })
 
 module.exports = mongoose.model("blog", BlogSchema);

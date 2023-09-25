@@ -34,6 +34,7 @@ const AllRoutes = () => {
           <Route path='signup' element={<Signup />} />
           <Route path='logout' element={<Logout />} />
           
+          
           <Route path='' element={<TeacherContainer />}>
               <Route path="teacher" element={<Teacher />} />
               <Route path="teacher/list" element={<List />} />
@@ -47,8 +48,10 @@ const AllRoutes = () => {
           </Route>
         </Route>
 
+        <Route path='adminlogin' element={<AdminLogin />} />
+
         <Route path='admin' element={<AdminContainer />}>
-          <Route path='' element={<AdminLogin />} />
+          
           <Route path='dashboard' element={<Dashboard />} />
           <Route path='student' element={<Student />} />
           <Route path='image' element={<Image />} />

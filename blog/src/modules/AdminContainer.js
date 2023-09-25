@@ -8,6 +8,13 @@ import { useNavigate } from 'react-router-dom'
 
 const AdminContainer = () => {
   
+  let navigate = useNavigate();
+  useEffect(()=>{
+    if(! localStorage.getItem("lorem")){
+      navigate("/");
+    }
+  }, [])
+
   let disp = useDispatch();
   disp(fetchStu())
   return (

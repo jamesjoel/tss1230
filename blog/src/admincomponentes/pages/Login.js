@@ -5,6 +5,8 @@ import {API} from '../../util/API'
 import {useNavigate} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { adminLogin } from '../../redux/AdminAuthSlice'
+import Header from '../shared/Header'
+import Footer from '../shared/Footer'
 const Login = () => {
 
     let navigate = useNavigate();
@@ -35,7 +37,8 @@ const Login = () => {
 
   return (
     <>
-        <div className='container my-4'>
+        <Header />
+        <div className='container my-4' style={{minHeight : "650px"}}>
             <form onSubmit={handleSubmit}>
             <div className='row'>
                 <div className='col-md-6 offset-md-3'>
@@ -54,6 +57,7 @@ const Login = () => {
             </div>
             </form>
         </div>
+        <Footer />
     </>
   )
 }

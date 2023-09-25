@@ -8,7 +8,16 @@ const Blog = (props) => {
     <div className="col-lg-3 col-md-6">
                   <article className="post-grid mb-5">
                     <a className="post-thumb mb-4 d-block" href="blog-single.html">
-                      <img style={{ height : "250px"}} src={URL+"/blog-images/"+props.data.image} alt="" className="img-fluid w-100" />
+                      {
+                        props.data.type == "image" ? <img style={{ height : "250px"}} src={URL+"/blog-data/"+props.data.image} alt="" className="img-fluid w-100" /> : ''
+                      }
+                      {
+                        props.data.type == "video" ? 
+                          (<video width="320" height="240" controls>
+                            <source src={URL+"/blog-data/"+props.data.image} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>) : ''
+                      }
                     </a>
                     <span className="cat-name text-color font-extra text-sm text-uppercase letter-spacing-1">{props.data.category}</span>
                     <h3 className="post-title mt-1"><a href="blog-single.html">{props.data.title}</a></h3>
