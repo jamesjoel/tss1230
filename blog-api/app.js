@@ -13,6 +13,11 @@ app.use(cors());
 app.use(routes);
 
 const port = process.env.PORT || 8080;
+
+console.log("FIRST -------------")
+
 app.listen(port, ()=>{
-    console.log("server running with port ", port);
+    // console.log("server running with port ", port);
+    console.log("SECOND -------------")
+    console.log("THIRD -------------")
 })

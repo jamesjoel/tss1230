@@ -7,9 +7,10 @@ const Home = () => {
 
   let [allBlogs, setAllBlogs] = useState([]);
   useEffect(()=>{
-    axios.get(`${API}/blogs`).then(response=>{
-      setAllBlogs(response.data);
-    })
+    (async ()=>{
+      let response =  await axios.get(`${API}/blogs`)
+      setAllBlogs(response.data)
+    })();
   }, [])
 
   return (
