@@ -3,16 +3,12 @@ const Blogs = require("../models/Blogs");
 const jwt = require("jsonwebtoken")
 const key = require("../config/secretKey")
 const path = require("path");
+const uniquestr = require("unique-string-generator")
 
 routes.get("/", async(req, res)=>{
     let result = await Blogs.find();
     res.send(result)
 })
-
-
-
-
-
 routes.get("/user", async(req, res)=>{
     if(req.headers.authorization){
 
@@ -25,11 +21,13 @@ routes.get("/user", async(req, res)=>{
         res.send({ success : false });
     }
 })
-
 routes.get("/:a", async(req, res)=>{
     let result = await Blogs.find({ category : req.params.a});
     res.send(result);
 })
+
+
+
 
 routes.delete("/user/:id", async(req, res)=>{
     if(req.headers.authorization){
@@ -44,7 +42,7 @@ routes.delete("/user/:id", async(req, res)=>{
 
 routes.post("/", async(req, res)=>{
 
-    
+    let uniquename = uniquestr.UniqueString();
 
     let token = req.headers.authorization;
     let obj = jwt.decode(token, key);
@@ -57,6 +55,12 @@ routes.post("/", async(req, res)=>{
     let type = req.files.image.mimetype; // video/mp4    image/jpeg
     let arr = type.split("/");
 
+    let oldname = file.name;
+    let namearr = oldname.split(".");
+    let ext = namearr[namearr.length-1];
+
+    let newname = uniquename+"."+ext;
+
     if(arr[0]=="video")
     {
         data.type="video";
@@ -66,12 +70,12 @@ routes.post("/", async(req, res)=>{
         data.type="image";
     }
 
-    file.mv(path.resolve()+"/assets/blog-data/"+file.name, async(err)=>{
+    file.mv(path.resolve()+"/assets/blog-data/"+newname, async(err)=>{
         if(err){
             console.log(err);
             return;
         }
-        data.image = file.name;
+        data.image = newname;
         data.bloggerid = id;
         await Blogs.create(data);
         res.send({ success : true });
