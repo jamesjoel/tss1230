@@ -1,12 +1,12 @@
 {
   "student": [
     {
-      "id": 1,
-      "name": "rohit",
-      "age": 25,
+      "name": "raj",
+      "age": "21",
       "gender": "male",
-      "fee": 5000,
-      "city": "indore"
+      "city": "Mumbai",
+      "fee": "8000",
+      "id": 1
     },
     {
       "id": 2,
@@ -14,15 +14,15 @@
       "age": 21,
       "gender": "male",
       "fee": 6000,
-      "city": "mumbai"
+      "city": "Mumbai"
     },
     {
-      "name": "Ndhi",
-      "age": "24",
-      "gender": "female",
+      "name": "Demo",
+      "age": "20",
+      "gender": "male",
       "city": "Mumbai",
-      "fee": "8700",
-      "id": 3
+      "fee": "5000",
+      "id": 4
     }
   ]
 }
