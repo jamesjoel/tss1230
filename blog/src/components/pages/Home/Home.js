@@ -3,7 +3,11 @@ import Blog from '../../shared/Blog/Blog'
 import axios from 'axios'
 import {API} from '../../../util/API'
 import Box from '../../shared/Box/Box'
+import MyDate from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css';
 const Home = () => {
+
+  const [startDate, setStartDate] = useState(new Date());
 
   let [allBlogs, setAllBlogs] = useState([]);
   useEffect(()=>{
@@ -19,6 +23,7 @@ const Home = () => {
         <section className="section-padding">
         <div className="container">
           <div className="row">
+          <MyDate dateFormat="dd/MM/yyyy" selected={startDate} onChange={(date) => setStartDate(date)} />
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div className="row">
                 {

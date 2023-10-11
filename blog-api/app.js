@@ -7,10 +7,16 @@ const upload = require("express-fileupload")
 app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
 app.use(express.static(__dirname+"/assets"));
+// app.use(express.static(__dirname+"/static"));
 
 app.use(upload());
 app.use(cors());
 app.use(routes);
+
+app.get("*", (req, res)=>{
+    res.sendFile(__dirname+"/index.html");
+})
+
 
 const port = process.env.PORT || 8080;
 
