@@ -4,26 +4,38 @@ const routes = require("./config/allRoutes");
 const cors = require("cors");
 const upload = require("express-fileupload")
 
+// for server
+const root = require("path").join(__dirname, "build");
+
+
+app.use(express.static(__dirname+"/assets"));
 app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
-app.use(express.static(__dirname+"/assets"));
-// app.use(express.static(__dirname+"/static"));
+
+// for server
+app.use(express.static(root));
 
 app.use(upload());
 app.use(cors());
 app.use(routes);
 
+// for server
 app.get("*", (req, res)=>{
-    res.sendFile(__dirname+"/index.html");
+    res.sendFile("index.html", {root});
+    // Demo Proejct : User Blog Project
 })
+
 
 
 const port = process.env.PORT || 8080;
 
-console.log("FIRST -------------")
+
 
 app.listen(port, ()=>{
-    // console.log("server running with port ", port);
-    console.log("SECOND -------------")
-    console.log("THIRD -------------")
+    console.log("server running with port ", port);
+   
 })
+
+
+// jamesjoel
+// 3NOLjUjPnAAvuAIn

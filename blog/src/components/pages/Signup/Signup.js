@@ -30,6 +30,7 @@ const Signup = () => {
             // console.log(formData);
             // return;
             axios.post(`${API}/user/signup`, formData).then(response=>{
+                console.log(response.data);
                 navigate("/login");
             })
         }
@@ -96,9 +97,7 @@ const Signup = () => {
                         <label>Contact</label>
                         <input type='text' onChange={handleChange} name='contact' className='form-control' />
                     </div>
-                    
-                    
-
+       
                 </div>
                 <div className='card-footer'>
                     <input type='submit' className='btn btn-dark' />
@@ -115,7 +114,9 @@ export default Signup
 /*
 
     
+394
 
+9424009856
 
 
 */

@@ -8,9 +8,11 @@ routes.get("/", async(req, res)=>{
 })
 // localhost:8080/api/user  --- post
 routes.post("/signup", async(req, res)=>{
+    console.log(req.body);
     delete req.body.repassword;
     req.body.password = sha1(req.body.password);
-    await User.create(req.body);
+    let result =await User.create(req.body); 
+    console.log(result);
     res.send({ success : true });
 })
 
