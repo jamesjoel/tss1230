@@ -62,7 +62,8 @@ const Header = () => {
 										Blog By Category
 									</a>
 									<div className="dropdown-menu" aria-labelledby="navbarDropdown2">
-										{
+
+										{ // /view-blog-by-cate/electronic
 											allCate.map((value, index)=><NavLink key={value._id} className="dropdown-item" to={"/view-blogs-by-category/"+value.name}>{value.name}</NavLink>)
 										}
 										
